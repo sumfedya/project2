@@ -86,7 +86,7 @@ header {
 .about-video {
     margin: 50px 50px 50px 0;
     width: 430px;
-    height: 245px;
+    height: 242px;
     border: 1px solid black;
 }
 
@@ -94,7 +94,7 @@ header {
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: space-around;
     width: @site-width;
     min-height: 418px;
     margin: 0 auto;
@@ -129,8 +129,9 @@ header {
 }
 
 .pluses-details[open] > summary::before {
-    margin-right: 50px;
-    content: url(../img/minus.png);
+    display: block;
+    /*    content: url(../img/minus.png); */
+    content: "-";
 }
 
 .pluses-summary {
@@ -149,8 +150,18 @@ header {
 }
 
 .pluses-summary::before {
+    display: block;
     margin-right: 9px;
-    content: url(../img/plus.png);
+    /*     content: url(../img/plus.png);*/
+    content: "+";
+    height: 32px;
+    width: 32px;
+    background-color: #445161;
+    color: white;
+    text-align: center;    
+    font-size: 32px;
+    font-weight: bold;
+    line-height: 32px;
     position: absolute;
     left: -41px;
 }
@@ -398,7 +409,7 @@ footer {
     width: @site-width;
     min-height: 535px;
     margin: 0 auto;
-    background-color: #445162;    
+    background-color: #445162;
 }
 
 .footer-header {
@@ -425,6 +436,14 @@ footer {
     font-size: 16px;
     font-weight: 400;
     line-height: 24px;
+}
+
+.input-username {
+    text-transform: capitalize;
+}
+
+.input-txt {
+    resize: none;
 }
 
 .input-btn {
@@ -458,19 +477,22 @@ footer {
 
 .social-icon::before {
     margin-right: 10px;
+    font-size: 25px;
+
+}
+
+.icq::before {
+    margin-left: 0;
+    /*    fontello */
 }
 
 .social-data {
     display: inline;
     color: #ffffff;
     font-size: 16px;
+    font-style: normal;
     font-weight: 400;
     line-height: 24px;
-}
-
-.icq::before {
-    content: url(../img/icq_icon.png);
-    margin-right: 10px;
 }
 
 .social-link {
