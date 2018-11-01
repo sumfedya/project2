@@ -77,14 +77,14 @@ header {
 .about-video {
   margin: 50px 50px 50px 0;
   width: 430px;
-  height: 245px;
+  height: 242px;
   border: 1px solid black;
 }
 .pluses {
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: space-around;
   width: 1280px;
   min-height: 418px;
   margin: 0 auto;
@@ -117,8 +117,9 @@ header {
   margin-bottom: 0;
 }
 .pluses-details[open] > summary::before {
-  margin-right: 50px;
-  content: url(../img/minus.png);
+  display: block;
+  /*    content: url(../img/minus.png); */
+  content: "-";
 }
 .pluses-summary {
   display: block;
@@ -134,8 +135,18 @@ header {
   display: none;
 }
 .pluses-summary::before {
+  display: block;
   margin-right: 9px;
-  content: url(../img/plus.png);
+  /*     content: url(../img/plus.png);*/
+  content: "+";
+  height: 32px;
+  width: 32px;
+  background-color: #445161;
+  color: white;
+  text-align: center;
+  font-size: 32px;
+  font-weight: bold;
+  line-height: 32px;
   position: absolute;
   left: -41px;
 }
@@ -393,6 +404,12 @@ footer {
   font-weight: 400;
   line-height: 24px;
 }
+.input-username {
+  text-transform: capitalize;
+}
+.input-txt {
+  resize: none;
+}
 .input-btn {
   margin-top: 21px;
   width: 140px;
@@ -420,17 +437,19 @@ footer {
 }
 .social-icon::before {
   margin-right: 10px;
+  font-size: 25px;
+}
+.icq::before {
+  margin-left: 0;
+  /*    fontello */
 }
 .social-data {
   display: inline;
   color: #ffffff;
   font-size: 16px;
+  font-style: normal;
   font-weight: 400;
   line-height: 24px;
-}
-.icq::before {
-  content: url(../img/icq_icon.png);
-  margin-right: 10px;
 }
 .social-link {
   display: inline-block;
