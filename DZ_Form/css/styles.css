@@ -12,9 +12,10 @@ form {
 }
 fieldset {
   border: none;
+  margin: 0;
 }
 .user-type {
-  min-height: 190px;
+  min-height: 200px;
   background-color: white;
   font-size: 20px;
   font-weight: bold;
@@ -38,9 +39,9 @@ fieldset {
 }
 .r-btn + label::before {
   content: "\26AB";
+  border: 1px solid #000000;
   border-radius: 50%;
   display: inline-block;
-  border: 1px solid #000000;
   line-height: 25px;
   margin: -5px 5px 0 0;
   height: 25px;
@@ -54,4 +55,152 @@ fieldset {
 }
 .r-btn:checked + label::before {
   color: #8ac9b8;
+}
+.user-color {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  min-height: 220px;
+  background-color: #efefef;
+  font-size: 20px;
+  font-weight: bold;
+  position: relative;
+}
+.user-color::before {
+  content: 'цвет';
+  text-transform: uppercase;
+  color: #8ac9b8;
+  position: absolute;
+  top: 55px;
+  left: 100px;
+}
+.col1,
+.col2,
+.col3 {
+  width: 200px;
+  margin-top: 55px;
+}
+.col1 {
+  margin-left: 180px;
+}
+.row2 {
+  margin-top: 25px;
+}
+.check {
+  display: none;
+}
+.check + label::before {
+  content: "\2714";
+  display: inline-block;
+  border: 1px solid #000000;
+  line-height: 25px;
+  margin: 0 5px 0 0;
+  height: 35px;
+  width: 35px;
+  text-align: center;
+  vertical-align: middle;
+  font-size: 28px;
+}
+.check + label::before {
+  color: #efefef;
+}
+.check:checked + label::before {
+  color: #000000;
+}
+.user-name {
+  min-height: 200px;
+  background-color: white;
+  font-size: 20px;
+  font-weight: bold;
+  position: relative;
+}
+.user-name::before {
+  content: 'ФИО';
+  text-transform: uppercase;
+  color: #8ac9b8;
+  position: absolute;
+  top: 32px;
+  left: 100px;
+}
+.user-name div {
+  margin-top: 20px;
+  margin-left: 200px;
+  margin-bottom: 30px;
+}
+.user-name input {
+  outline: none;
+  border-width: 0 0 1px 0;
+  border-bottom-color: black;
+  font-size: 25px;
+  text-transform: capitalize;
+  width: auto;
+}
+.user-name input::-webkit-input-placeholder {
+  text-indent: 10px;
+  font-size: 18px;
+  text-transform: none;
+}
+.user-name input:-moz-placeholder {
+  text-indent: 10px;
+  font-size: 18px;
+  text-transform: none;
+}
+.user-name label {
+  font-size: 25px;
+}
+#txt1,
+#txt3 {
+  width: 75%;
+}
+#txt2 {
+  width: 82%;
+}
+.phone-mail {
+  min-height: 200px;
+  background-color: #efefef;
+  font-size: 20px;
+  font-weight: bold;
+  position: relative;
+}
+.phone-mail::before {
+  content: 'ФИО';
+  text-transform: uppercase;
+  color: #8ac9b8;
+  position: absolute;
+  top: 32px;
+  left: 100px;
+}
+.phone-mail div {
+  margin-top: 20px;
+  margin-left: 200px;
+  margin-bottom: 30px;
+}
+.phone-mail input {
+  outline: none;
+  border-width: 0 0 1px 0;
+  border-bottom-color: black;
+  font-size: 25px;
+  text-transform: capitalize;
+  width: auto;
+}
+.phone-mail input::-webkit-input-placeholder {
+  text-indent: 10px;
+  font-size: 18px;
+  text-transform: none;
+}
+.phone-mail input:-moz-placeholder {
+  text-indent: 10px;
+  font-size: 18px;
+  text-transform: none;
+}
+.phone-mail label {
+  font-size: 25px;
+}
+#phone {
+  width: 82.5%;
+  background-color: #efefef;
+}
+#mail {
+  width: 77%;
+  background-color: #efefef;
 }

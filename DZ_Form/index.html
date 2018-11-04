@@ -15,9 +15,59 @@
                 <input type="radio" class="r-btn" name="user-type" id="rb1" value="acc" checked> <label for="rb1" checked>Аксессуар для интерьера</label>
             </div>
             <div>
-                <input type="radio" class="r-btn"  name="user-type" id="rb2" value="toy"><label for="rb2">Детская игрушка</label>
+                <input type="radio" class="r-btn" name="user-type" id="rb2" value="toy"><label for="rb2">Детская игрушка</label>
             </div>
-        </fieldset>        
+        </fieldset>
+        <div class="user-color">
+            <div class="col1">
+                <div>
+                    <input type="checkbox" class="check" id="check1" value="white" checked><label for="check1">Белый</label>
+                </div>
+                <div class="row2">
+                    <input type="checkbox" class="check" id="check4" value="black"><label for="check4">Черный</label>
+                </div>
+            </div>
+            <div class="col2">
+                <div>
+                    <input type="checkbox" class="check" id="check2" value="gray" checked><label for="check2">Серый</label>
+                </div>
+                <div class="row2">
+                    <input type="checkbox" class="check" id="check5" value="pink"><label for="check5">Розовый</label>
+                </div>
+            </div>
+            <div class="col3">
+                <div>
+                    <input type="checkbox" class="check" id="check3" value="tiffany"><label for="check3">&quot;Тиффани&quot;</label>
+                </div>
+                <div class="row2">
+                    <input type="checkbox" class="check" id="check6" value="orange"><label for="check6">Оранжевый</label>
+                </div>
+            </div>
+        </div>
+        <fieldset class="user-name">
+            <div>
+                <label for="txt1">Фамилия:</label>
+                <input type="text" id="txt1" placeholder="Укажите фамилию" pattern="(?:[А-Яа-яЁёA-Za-z ]+)">
+            </div>
+            <div>
+                <label for="txt2">Имя:</label>
+                <input type="text" id="txt2" placeholder="Введите ваше имя" pattern="(?:[А-Яа-яЁёA-Za-z ]+)">
+            </div>
+            <div>
+                <label for="txt3">Отчество:</label>
+                <input type="text" id="txt3" placeholder="Отчество, если желаете" pattern="(?:[А-Яа-яЁёA-Za-z ]+)">
+            </div>
+        </fieldset>
+        <fieldset class="phone-mail">
+            <div>
+                <label for="phone">TEL:</label>
+                <input type="phone" id="phone" placeholder="+7 XXX XX XX" pattern="+7\s\d\d\d\s\d\d\s\d\d">
+            </div>
+            <div>
+                <label for="mail">E-MAIL:</label>
+                <input type="mail" id="mail" placeholder="Мы не будем спамить, честно!">
+            </div>
+        </fieldset>
     </form>
 </body>
 
