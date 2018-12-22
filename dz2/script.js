@@ -107,10 +107,15 @@
 //    if (pow==0) {
 //        return 1;
 //    }
-//    if (pow==1) {
-//        return val;
-//    }
+//    
+//    if (pow>0){
+//        if (pow==1) {
+//            return val;
+//        }
+//        else{
+//            return val*power(val, pow-1);
+//        }}
 //    else{
-//        return val*power(val, pow-1);
+//        return (1/power(val,pow*-1));
 //    }
 //}
