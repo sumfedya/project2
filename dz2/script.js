@@ -97,25 +97,25 @@
 //document.write("null+0: "+String(null+0));
 ///* Как видно из результатов, операции сравнения будут всегда возвращать ложь, т.к. null и 0 - объекты разных типов. А вот математические действия работают. Видимо, оператор "+" выполняет приведение типов к числу. В 1С это выражение вернуло бы null :) Вообще, интересно изучать новый синтаксис и следить за ньюансами :) */
 //
-//Задание 8*
-var a = +prompt("Введите число", "0");
-var n = +prompt("Введите степень, в которую надо возвести число а", "0");
-
-document.write(String(a)+"^"+String(n)+" = "+power(a,n));
-
-function power(val, pow){
-    if (pow==0) {
-        return 1;
-    }
-    
-    if (pow>0){
-        if (pow==1) {
-            return val;
-        }
-        else{
-            return val*power(val, pow-1);
-        }}
-    else{
-        return (1/power(val,pow*-1));
-    }
-}
+////Задание 8*
+//var a = +prompt("Введите число", "0");
+//var n = +prompt("Введите степень, в которую надо возвести число а", "0");
+//
+//document.write(String(a)+"^"+String(n)+" = "+power(a,n));
+//
+//function power(val, pow){
+//    if (pow==0) {
+//        return 1;
+//    }
+//    
+//    if (pow>0){
+//        if (pow==1) {
+//            return val;
+//        }
+//        else{
+//            return val*power(val, pow-1);
+//        }}
+//    else{
+//        return (1/power(val,pow*-1));
+//    }
+//}
