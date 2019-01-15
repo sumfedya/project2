@@ -1,0 +1,26 @@
+body {
+    margin: 0 auto;
+}
+
+.cart, .items {
+    display: block;
+    width: 960px;
+    margin: 0 auto;
+    padding: 20px 0 20px 0;
+}
+
+.cart{
+    min-height:  100px; 
+}
+
+.catalog {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.sum{
+    font-size: 1.2em;
+    color: cornflowerblue;
+}
