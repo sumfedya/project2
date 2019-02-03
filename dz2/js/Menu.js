@@ -20,18 +20,20 @@ class Menu {
 }
 
 class SubMenu extends Menu {
-    constructor(id, className, subName, items){
+    constructor(itemClassName, id, className, subName, items){
         super(id, className, items); 
         this.subName = subName;
+        this.itemClassName = itemClassName;
+        this.active = true;
     }
     render(){
-        let result = `<li><span style="color:blue"><ins>${this.subName}</ins></span><ul class="${this.className}" id="${this.id}">`;
+        let result = `<li class="${this.itemClassName} sub_${this.itemClassName} "><a href=# class="menuItemLink">${this.subName}</a><ul class="${this.className}" id="${this.id}">`;
         for (let item of this.items){
-            if (item instanceof MenuItem){
+            if ((item instanceof MenuItem)||(item instanceof SubMenu)){
                 result += item.render();
             }
         }
-        result += `</ul></li>`;        
+        result += `</ul></li>`;          
         return result;
-    }
+    }    
 }

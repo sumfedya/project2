@@ -1,0 +1,61 @@
+html,
+body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;    
+}
+
+.myMenu {
+    list-style-type: none;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+}
+
+.menuItem {
+    display: inline;
+    margin-left: 8px; 
+    text-align: center;
+}
+
+.menuItem:hover >.subMenu,
+.subMenuItem:hover >.subMenu{
+    display: block;        
+}
+
+.menuItem:hover >.menuItemLink,
+.subMenuItem:hover >.menuItemLink{
+    color: white;
+    background-color: black;
+}
+
+.menuItemLink {
+    display: block;
+    border-radius: 5px;
+    padding: 12px;
+    color: black;
+    background-color: lightgray;
+    text-decoration: none;
+}
+
+.menuItemLink:hover {
+    color: white;
+    background-color: black;
+}
+
+.sub_menuItem {
+    min-width: 130px;
+}
+.subMenu {
+    display: none;  
+    min-width: ;
+    padding: 0;
+    list-style-type: none;    
+}
+
+.subMenuItem {
+    padding: 8px 0 0 0;    
+    text-align: center;
+}

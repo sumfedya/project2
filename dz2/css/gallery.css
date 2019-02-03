@@ -1,0 +1,38 @@
+html,
+body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%; 
+    background-color: white;
+}
+
+#gallery {
+    padding-top: 80px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.modal {
+    display: none;
+    position: absolute;
+    top:0;
+    left: 0;        
+    margin: auto;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0, 0.7);
+    z-index: 10;
+}
+
+.bigImg {
+    display: block;
+    position: relative;
+    margin: 0 auto;
+    width: 640px;
+    height: 480px;    
+    z-index: 20;
+}
