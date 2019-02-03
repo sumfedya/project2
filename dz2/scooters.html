@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Scooters</title>
+    <link rel="stylesheet" href="css/gallery.css">
+</head>
+
+<body>
+   <div id="gallery"></div>
+   <div class="modal"></div>
+    <script src="js/ImgSmall.js"></script>
+    <script>
+        window.onload = () => {
+            let blockGallery = document.getElementById("gallery");
+            fetch('json/gallery.json')
+                .then(result => result.json())
+                .then(arrObj => {
+                    for (let obj of arrObj) {
+                        let newSmallImg = new ImgSmall(obj.src, obj.alt);
+                        newSmallImg.createSmallImg(blockGallery);
+                    }
+
+                })
+        }
+    </script>
+
+</body>
+</html>
