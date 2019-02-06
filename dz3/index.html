@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>JS2_dz3</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="dialogs">
+        <p id="origin"></p>
+        <h2>Результат замены (задание 1: заменяем ВСЕ одинарные кавычки на двойные):</h2>
+        <p id="result1"></p>
+        <h2>Результат замены (задание 2: заменяем все одинарные кавычки, кроме апострофов, на двойные):</h2>
+        <p id="result2"></p>
+        <h2>Задание 3:</h2>
+        <form action="#" method="post" id="myform">
+            <fieldset>
+                <legend>Свяжитесь с нами</legend>
+                <label id="namelabel">Имя: <input type="text" id="name" placeholder="Имя"></label>
+                <label id="tellabel">Телефон: <input type="tel" id="phone" placeholder="+7(000)000-0000"></label>
+                <label id="maillabel">E-mail: <input type="email" id="mail" placeholder="mymail@mail.ru"></label>
+                <label id="txtlabel" >Сообщение: <textarea id="txt" cols="30" rows="5" placeholder="Ваше сообщение"></textarea></label>
+                <button id="btn-send" type="submit">Отправить</button>
+            </fieldset>
+        </form>
+
+    </div>
+    <script src="classes.js"></script>
+    <script>
+        window.onload = () => {
+            let elOrigin = document.getElementById('origin');
+            elOrigin.style.whiteSpace = 'pre-line';
+            elOrigin.style.border = '1px solid black';
+
+            elResult = document.getElementById('result1');
+            elResult.style.whiteSpace = 'pre-line';
+            elResult.style.border = '1px solid black';
+
+            elResult2 = document.getElementById('result2');
+            elResult2.style.whiteSpace = 'pre-line';
+            elResult2.style.border = '1px solid black';
+
+            fetch('texttoreplace.txt')
+                .then(result => result.text())
+                .then(resultText => {
+                    elOrigin.innerHTML = resultText;
+                    elResult.innerHTML = resultText.replace(/\'/g, '"');
+                    elResult2.innerHTML = resultText.replace(/\B\'/g, '"'); //Диалог оформлен синтаксически верно, поэтому "цитатные" кавычки располагаются либо после пробелов, либо после знаков препинания. // то есть не после границы слова. Апостроф же идёт после границы слова слева и перед границей справа, что не попадёт под шаблон /\B\'/
+
+                    //А можно так: кавычки для замены стоят после пробельных символов либо знаков препинания
+                    //elResult2.innerHTML = resultText.replace(/([\s\.\,\?\!])(\')/g, '$1"');
+
+                    //А можно так: слева от кавычки для замены не слово
+                    //elResult2.innerHTML = resultText.replace(/(\W)(\')/g, '$1"');
+                })
+            
+            let name = new CheckElem('name', 'namelabel', /[a-zа-яА-ЯёЁ]/ig);
+            let tel = new CheckElem('phone', 'tellabel', /\+7\(\d\d\d\)\d\d\d\-\d\d\d\d/);//+7(000)000-0000
+            let mail = new CheckElem('mail', 'maillabel', /\w\.?\-?\w?@mail\.ru/);
+            let text = new CheckElem('txt', 'txtlabel', /\w/g);
+            
+            let btn = document.getElementById('btn-send');
+            btn.addEventListener('click', e => {
+              if ((!name.check())||(!tel.check())||(!mail.check())||(!text.check())) {
+                  e.preventDefault();
+              }
+            })
+
+        }
+    </script>
+</body>
+
+</html>

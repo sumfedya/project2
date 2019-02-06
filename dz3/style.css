@@ -1,0 +1,32 @@
+input{
+    display: block;
+    width: 200px;
+}
+
+textarea{
+    display: block;
+    resize: none;
+    margin-bottom: 20px;    
+}
+
+.incorrect{
+    position: relative;
+}
+
+.incorrect>input,
+.incorrect>textarea{
+    outline: 1px solid red;    
+}
+
+.incorrect::after{
+    content: "Поле заполнено неверно";
+    color: red;  
+    position: absolute;
+    top: -18px;
+    left: 210px;
+    width: 170px;
+}
+
+#btn-send{
+    outline: none;
+}
