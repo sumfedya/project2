@@ -16,8 +16,21 @@ class CheckElem {
             if (!elLabel.classList.contains('incorrect')) {
                 elLabel.classList.add('incorrect');
             }
-        }
-        console.log(result);
+        }        
+        return result;
+    }
+    checkNumber(){
+        let result = (this.pattern !== document.getElementById(this.id).selectedIndex); 
+        let elLabel = document.getElementById(this.labelId);
+        if (result) {
+            if (elLabel.classList.contains('incorrect')) {
+                elLabel.classList.remove('incorrect');
+            }
+        } else {
+            if (!elLabel.classList.contains('incorrect')) {
+                elLabel.classList.add('incorrect');
+            }
+        }        
         return result;
     }
 }
