@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>dz4_JS2</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <h2>Задание 1</h2>
+    <div id="container">
+        <ul class="tab_headers">
+            <li class="tab_active">Вкладка1</li>
+            <li>Вкладка2</li>
+            <li>Вкладка3</li>
+            <li>Вкладка4</li>
+        </ul>
+        <div class="tab_content tab_content_active">
+            <p>Lorem1 ipsum dolor sit amet, consectetur adipisicing elit. Aut enim magni, sequi accusantium quod voluptatum itaque facere sapiente doloribus. Eos!</p>
+            <p>Lorem1 ipsum dolor sit amet, consectetur adipisicing elit. Aut enim magni, sequi accusantium quod voluptatum itaque facere sapiente doloribus. Eos!</p>
+        </div>
+        <div class="tab_content">
+            <p>Lorem2 ipsum dolor sit amet, consectetur adipisicing elit. Aut enim magni, sequi accusantium quod voluptatum itaque facere sapiente doloribus. Eos!</p>
+            <p>Lorem2 ipsum dolor sit amet, consectetur adipisicing elit. Aut enim magni, sequi accusantium quod voluptatum itaque facere sapiente doloribus. Eos!</p>
+            <p>Lorem2 ipsum dolor sit amet, consectetur adipisicing elit. Aut enim magni, sequi accusantium quod voluptatum itaque facere sapiente doloribus. Eos!</p>
+        </div>
+        <div class="tab_content">
+            <p>Lorem3 ipsum dolor sit amet, consectetur adipisicing elit. Aut enim magni, sequi accusantium quod voluptatum itaque facere sapiente doloribus. Eos!</p>
+            <p>Lorem3 ipsum dolor sit amet, consectetur adipisicing elit. Aut enim magni, sequi accusantium quod voluptatum itaque facere sapiente doloribus. Eos!</p>
+        </div>
+        <div class="tab_content">
+            <p>Lorem4 ipsum dolor sit amet, consectetur adipisicing elit. Aut enim magni, sequi accusantium quod voluptatum itaque facere sapiente doloribus. Eos!</p>
+            <p>Lorem4 ipsum dolor sit amet, consectetur adipisicing elit. Aut enim magni, sequi accusantium quod voluptatum itaque facere sapiente doloribus. Eos!</p>
+            <p>Lorem4 ipsum dolor sit amet, consectetur adipisicing elit. Aut enim magni, sequi accusantium quod voluptatum itaque facere sapiente doloribus. Eos!</p>
+            <p>Lorem4 ipsum dolor sit amet, consectetur adipisicing elit. Aut enim magni, sequi accusantium quod voluptatum itaque facere sapiente doloribus. Eos!</p>
+        </div>
+    </div>
+    <h2>Задание 2</h2>
+    <form action="#" method="post" id="myform">
+        <fieldset>
+            <legend>Свяжитесь с нами</legend>
+            <label id="namelabel">Имя: <input type="text" id="name" placeholder="Имя"></label>
+            <label id="citylabel">Город: <select id="city">
+                    <option value="" hidden disabled selected>Выбрать</option>
+                </select></label>
+            <label id="tellabel">Телефон: <input type="tel" id="phone" placeholder="+7(000)000-0000"></label>
+            <label id="maillabel">E-mail: <input type="email" id="mail" placeholder="mymail@mail.ru"></label>
+            <label id="txtlabel">Сообщение: <textarea id="txt" cols="30" rows="5" placeholder="Ваше сообщение"></textarea></label>
+            <button id="btn-send" type="submit">Отправить</button>
+        </fieldset>
+    </form>
+    <h2>Задание 3</h2>
+    <form action="#" method="post" id="myform1">
+        <fieldset>
+            <legend>Свяжитесь с нами</legend>
+            <label id="namelabel1">Имя: <input type="text" id="name1" placeholder="Имя"></label>
+            <label id="citylabel1">Город: <input type="text" id="city1" placeholder="Город" autocomplete="off"></label>
+            <ul class="search_list"></ul>
+            <label id="tellabel1">Телефон: <input type="tel" id="phone1" placeholder="+7(000)000-0000"></label>
+            <label id="maillabel1">E-mail: <input type="email" id="mail1" placeholder="mymail@mail.ru"></label>
+            <label id="txtlabel1">Сообщение: <textarea id="txt1" cols="30" rows="5" placeholder="Ваше сообщение"></textarea></label>
+            <button id="btn-send1" type="submit">Отправить</button>
+        </fieldset>
+    </form>
+
+    <script src="jquery-3.3.1.min.js"></script>
+    <script src="script.js"></script>
+    <script>
+        $(document).ready(() => {
+            $('li').each((index, item) => {
+                $(item).on('click', () => {
+                    $('.tab_active').removeClass('tab_active');
+                    $(item).addClass('tab_active');
+                    $('.tab_content.tab_content_active').removeClass('tab_content_active');
+                    $('.tab_content').eq(index).addClass('tab_content_active');
+                })
+            })
+        })
+
+        ///////////////////////////////Задание 2
+        $.ajax({
+            url: 'Cities.json',
+            type: 'GET',
+            dataType: 'json',
+            success: (data) => {
+                for (let dataitem of data) {
+                    let city = $(`<option>${dataitem.City}</option>`);
+                    $('#city').append(city);
+                }
+            }
+        });
+
+        let name = new CheckElem('name', 'namelabel', /[a-zа-яА-ЯёЁ]/ig);
+        let city = new CheckElem('city', 'citylabel', 0);
+        let tel = new CheckElem('phone', 'tellabel', /\+7\(\d\d\d\)\d\d\d\-\d\d\d\d/); //+7(000)000-0000
+        let mail = new CheckElem('mail', 'maillabel', /\w\.?\-?\w?@mail\.ru/);
+        let text = new CheckElem('txt', 'txtlabel', /\w/g);
+
+        let btn = document.getElementById('btn-send');
+        btn.addEventListener('click', e => {
+            let r1 = name.check();
+            let r2 = tel.check();
+            let r3 = mail.check();
+            let r4 = text.check();
+            let r5 = city.checkNumber();
+
+            if ((!r1) || (!r2) || (!r3) || (!r4) || (!r5)) {
+                e.preventDefault();
+            }
+        })
+
+        ///////////////////////////////Задание 3
+
+        let name1 = new CheckElem('name1', 'namelabel1', /[a-zа-яА-ЯёЁ]/ig);
+        let tel1 = new CheckElem('phone1', 'tellabel1', /\+7\(\d\d\d\)\d\d\d\-\d\d\d\d/); //+7(000)000-0000
+        let mail1 = new CheckElem('mail1', 'maillabel1', /\w\.?\-?\w?@mail\.ru/);
+        let text1 = new CheckElem('txt1', 'txtlabel1', /\w/g);
+
+        let btn1 = document.getElementById('btn-send1');
+        btn.addEventListener('click', e => {
+
+            let r1 = name.check();
+            let r2 = tel.check();
+            let r3 = mail.check();
+            let r4 = text.check();
+
+            if ((!r1) || (!r2) || (!r3) || (!r4)) {
+                e.preventDefault();
+            }
+        })
+
+        ////////////////// автокомплит
+
+        let cityArray = [];
+
+        $.ajax({
+            url: 'Cities.json',
+            type: 'GET',
+            dataType: 'json',
+            success: (data) => {
+                for (let dataitem of data) {
+                    cityArray.push(`${dataitem.City}`);
+                };
+                //отфильтруем исходный массив, создав регулярное выражение на основе пользователського ввода. Получим массив, который надо предложить пользователю для заполнения поля ввода.
+                $('#city1').on('keyup input change', () => {
+                    if ($('#city1').val().length >= 3) {
+                        $('.search_list').empty(); //очистим список предложений
+                        let curSearchList = cityArray.filter(word => new RegExp(`${$('#city1').val()}`, 'i').test(word));
+                        if (curSearchList.length > 0) {
+                            for (let itemSearch of curSearchList) {
+                                let $cityItemSearchList = $(`<li>${itemSearch}</li>`);
+                                $('.search_list').append($cityItemSearchList);
+
+                                $cityItemSearchList.on('click', () => {
+                                    $('#city1').val(`${itemSearch}`);
+                                    $('.search_list').fadeOut();
+                                })
+                            };
+                            $('.search_list').fadeIn();
+                        } else {
+                            $('.search_list').fadeOut()
+                        }
+                    } else {
+                        $('.search_list').fadeOut()
+                    }
+                });
+                $('.search_list').hover(() => { //подсмотрел в гугле. Иначе приходилось 2 раза нажимать на выбранный элемент
+                    $('#city1').blur(); //убираем фокус с поля ввода при наведении на варианты выбора
+                })
+            }
+        });
+        $(document).mouseup(e => { //если кликнули мышкой не по полю ввода города, список надо убрать. Если кликнули по списку, сам уберется в обработчике выше.
+            if(!$('#city1').is(e.target)){
+                $('.search_list').fadeOut();
+            }            
+        })
+
+    </script>
+</body>
+
+</html>
