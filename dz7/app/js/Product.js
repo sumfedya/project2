@@ -16,7 +16,8 @@ class Product {
         });
         let $img = $('<img/>', {
             src: this.img,
-            alt: 'Some img'
+            class: 'product-img',
+            alt: 'Some img'            
         });
         let $name = $('<p/>', {
             text: this.title

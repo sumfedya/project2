@@ -7,7 +7,8 @@ let gulp = require('gulp'),
     delFiles = require('del'),
     cssMinify = require('gulp-csso'),
     babel = require('gulp-babel'),
-    pug = require('gulp-pug');
+    pug = require('gulp-pug'),
+    imgMin = require('gulp-imagemin');
    
 gulp.task('html', ()=> {
     return gulp.src('app/html/index.html')
@@ -70,6 +71,12 @@ gulp.task('copyJson', ()=>{
     .pipe(gulp.dest('dist/json'))
 });
 
+gulp.task('compressImg', ()=>{
+    return gulp.src('app/img/**/*.*')
+    .pipe(imgMin())
+    .pipe(gulp.dest('dist/img'))
+});
+
 gulp.task('sass:watch', ()=>{
     return gulp.watch('app/css/**/*.css', gulp.series('sass', (done) =>{
         bs.reload();
@@ -86,8 +93,7 @@ gulp.task('js:watch', ()=>{
 
 gulp.task('default', gulp.series(
     'clean',
-    gulp.parallel('copyJson','sass', 'html','js:es6', 'js:babel'),
-//    'pug', //не работает?
+    gulp.parallel('copyJson','sass', 'html','pug', 'js:es6', 'js:babel', 'compressImg'),
     gulp.parallel('sass:watch', 'js:watch','server')
     ))
     
