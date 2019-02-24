@@ -1,13 +1,17 @@
 class Cart {
-    constructor(source, container = '#cart') {
+    constructor(source, container = '#cart'){
         this.source = source;
         this.container = container;
         this.countGoods = 0; // Общее кол-во товаров
         this.amount = 0; // Общая стоимость товаров
         this.cartItems = []; // Массив товаров
-        this._init();        
     }
-    _render() {
+    static async create(source){
+        let cart = new Cart(source);
+        await cart._init();
+        return cart
+    }
+    _render(){
         let $cartItemsDiv = $('<div/>', {
             class: 'cart-items-wrap'
         });
@@ -21,13 +25,13 @@ class Cart {
         $cartItemsDiv.appendTo($(this.container));
         $totalCount.appendTo($(this.container));
         $totalPrice.appendTo($(this.container));
-    }
-    _init() {
+    } 
+    async _init(){
         this._render();
-        fetch(this.source)
+        await fetch(this.source)
             .then(result => result.json())
             .then(data => {
-                for (let product of data.contents) {
+                for (let product of data.contents){
                     this.cartItems.push(product);
                     this._renderProduct(product);
                 }
@@ -36,37 +40,34 @@ class Cart {
                 this._renderSum();
             })
     }
-    _renderProduct(product) {
+    _renderProduct(product){
         let $container = $('<div/>', {
             class: 'cart-item',
             'data-product': product.id_product
         });
         $container.append($(`<p class="product-name">${product.product_name}</p>`));
         $container.append($(`<p class="product-quantity">${product.quantity}</p>`));
-        let rmBtn = $('<button class="product-remove-btn">Уменьшить</button>');
-        rmBtn.on('click', () => this._remove(product));
-        $container.append(rmBtn);
         $container.append($(`<p class="product-price">${product.price} руб.</p>`));
+        let $delBtn = $(`<button class="del-btn">&times;</button>`);
+        $container.append($delBtn);
+        $delBtn.click(() => {
+            this._remove(product.id_product);
+        });
         $container.appendTo($('.cart-items-wrap'));
     }
-    _renderSum() {
+    _renderSum(){
         $('.sum-count').text(`Всего товаров в корзине: ${this.countGoods}`);
         $('.sum-price').text(`Всего товаров в корзине: ${this.amount}`);
     }
-    _updateCart(product) {
-        if (product.quantity === 0) { //если количество товара в корзине 0, уберём строку с товаром из корзины
-            this.cartItems.splice([this.cartItems.indexOf(product)], 1);
-            $(`div[data-product="${product.id_product}"]`).remove();
-        } else {
-            let $container = $(`div[data-product="${product.id_product}"]`);
-            $container.find('.product-quantity').text(product.quantity);
-            $container.find('.product-price').text(`${product.quantity*product.price} руб.`);
-        }
+    _updateCart(product){
+        let $container = $(`div[data-product="${product.id_product}"]`);
+        $container.find('.product-quantity').text(product.quantity);
+        $container.find('.product-price').text(`${product.quantity*product.price} руб.`);
     }
-    addProduct(element) {
+    addProduct(element){
         let productId = +$(element).data('id');
         let find = this.cartItems.find(product => product.id_product === productId);
-        if (find) {
+        if(find){
             find.quantity++;
             this.countGoods++;
             this.amount += find.price;
@@ -85,11 +86,19 @@ class Cart {
         }
         this._renderSum();
     }
-    _remove(product) { //можно и идентификатор, потом по идентификатору искать сам продукт, как find в addProduct, но незачем.
-        product.quantity--;
+    _remove(productId){
+        //TODO: удаление товара
+        let find = this.cartItems.find(product => product.id_product === productId);
+        if(find.quantity >1){
+            find.quantity--;
+            this._updateCart(find);
+        } else {
+            this.cartItems.splice(this.cartItems.indexOf(find), 1);
+            $(`div[data-product="${productId}"]`).remove();
+        }
         this.countGoods--;
-        this.amount -= product.price;
-        this._updateCart(product);
+        this.amount -= find.price;
         this._renderSum();
     }
+
 }
