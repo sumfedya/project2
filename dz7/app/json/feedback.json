@@ -1,6 +1,0 @@
-[
-  {"id": 1, "author": "John", "text": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. In, sint.", "isApproved": true},
-  {"id": 2, "author": "Ann", "text": "Lorem2 ipsum dolor sit amet, consectetur adipisicing elit. Sit mollitia, maiores reprehenderit necessitatibus iure excepturi.", "isApproved": false},
-  {"id": 3, "author": "Robert", "text": "Lorem3 ipsum dolor sit amet, consectetur adipisicing elit. Voluptates possimus voluptatem, eos.", "isApproved": true},
-  {"id": 4, "author": "Winston", "text": "Lorem4 ipsum dolor sit amet, consectetur adipisicing elit. Ullam non esse ipsam vel in minima, nam aperiam, aliquam? Inventore, eos.", "isApproved": false}
-]
