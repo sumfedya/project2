@@ -1,4 +1,4 @@
-
+﻿
 const path = require('path'),
     HTMLplugin = require('html-webpack-plugin'),
     MiniCssExtractPlugin = require('mini-css-extract-plugin'),
@@ -6,13 +6,13 @@ const path = require('path'),
 
 module.exports = {
   entry: {
-    // какой модуль собирать (index.js)
-    main: path.resolve(__dirname, 'src', 'index.js'),
+    // какой модуль собирать (App.js)
+    main: path.resolve(__dirname, 'src', 'App.js'),
   },
   output: {
     // куда выводить сборку (dist)
     path: path.resolve(__dirname, 'dist'),
-    filename: 'bundle.js'
+    filename: 'Main.js'
   },
   devServer: {
     // настройка сервера
@@ -25,9 +25,7 @@ module.exports = {
       {
         test: /\.jsx?$/,
         exclude: /node_modules/,
-        use: {
-          loader: 'babel-loader'
-        }
+        use: 'babel-loader'        
       },
       {
         test: /\.css$/,
@@ -50,9 +48,9 @@ module.exports = {
       },
     ]
   },
-  resolve: {
-    extensions: ['.js', '.jsx'],
-  },
+//  resolve: {
+//    extensions: ['.js', '.jsx'],
+//  },
   plugins: [
     new HTMLplugin({
       template: path.resolve(__dirname, 'src', 'index.html'),

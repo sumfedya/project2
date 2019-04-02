@@ -1,14 +1,17 @@
 {
-    "name": "dz2",
+    "name": "dz3",
     "version": "1.0.0",
-    "description": "",
-    "main": "index.js",
+    "main": "App.js",
     "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1"
+        "build": "webpack --mode production",
+        "dev": "webpack --mode development",
+        "watch": "webpack --mode development --watch",
+        "start": "webpack-dev-server --mode development --open"
     },
-    "keywords": [],
     "author": "",
     "license": "ISC",
+    "keywords": [],
+    "description": "",
     "devDependencies": {
         "@babel/core": "^7.4.0",
         "@babel/preset-env": "^7.4.2",
@@ -29,10 +32,5 @@
     "dependencies": {
         "react": "^16.8.6",
         "react-dom": "^16.8.6"
-    },
-    "scripts": {
-        "build": "webpack --mode production",
-        "dev": "webpack --mode development",
-        "start": "webpack-dev-server --mode development --open"
     }
 }
