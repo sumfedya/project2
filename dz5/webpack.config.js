@@ -30,7 +30,6 @@ module.exports = {
       {
         test: /\.css$/,
         use: [
-          MiniCssExtractPlugin.loader,
           'style-loader',
           'css-loader'          
         ],
@@ -51,6 +50,10 @@ module.exports = {
 //  resolve: {
 //    extensions: ['.js', '.jsx'],
 //  },
+  devServer: {
+    contentBase: path.resolve(__dirname, 'src', 'dist'),
+    historyApiFallback: true
+  },    
   plugins: [
     new HTMLplugin({
       template: path.resolve(__dirname, 'src', 'index.html'),
@@ -59,6 +62,6 @@ module.exports = {
     new MiniCssExtractPlugin({
       filename: '[name].css',
     }),
-  ],
+  ],    
 };
 
